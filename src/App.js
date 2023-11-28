@@ -1,10 +1,11 @@
 import './App.css';
-import LoginDemo from './features/auth/login';
+//import LoginDemo from './features/auth/login';
+import CustomerDashboard from './features/customer/dasboard';
 
 function App() {
   return (
     <div className="App">
-      <LoginDemo/>
+      <CustomerDashboard/>
     </div>
   );
 }
