@@ -4,6 +4,7 @@ import NavBarCustomer from "./components/navbar";
 import { useSearchParams } from "react-router-dom";
 import TrackOrder from "./components/trackOrder";
 import HistoryComponent from "./components/history";
+import PlaceOrder from "./components/placeorder";
 
 function CustomerDashboard(){
   const [param] = useSearchParams();
@@ -37,6 +38,17 @@ function CustomerDashboard(){
            <HistoryComponent/>
        </div>
    }
+   if(param.get('page')=== 'place_order'){
+    if(localStorage.getItem('isLoggedIn')===null){
+     localStorage.setItem('url','/customer/dashboard?page=place_order')
+     return<div>
+         <LoginDemo/>
+     </div>
+    }
+    return <div>
+         <PlaceOrder/>
+     </div>
+ }
 }
     return(
         <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '100vh', padding: '20px' }}>

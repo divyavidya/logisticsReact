@@ -11,6 +11,7 @@ function NavBarCustomer(){
             <Nav className="mr-auto">
             <Nav.Link style={{color:'white'}} onClick={() => navigate("/customer/dashboard?page=track_order")}>Track Order </Nav.Link>
             <Nav.Link style={{color:'white'}} onClick={() => navigate("/customer/dashboard?page=previous_orders")} > Previous Orders</Nav.Link>
+            <Nav.Link style={{color:'white'}} onClick={() => navigate("/customer/dashboard?page=place_order")} > Place Order</Nav.Link>
               {/* Add more Nav.Link components for additional tabs */}
             </Nav>
           </Navbar>
