@@ -8,6 +8,7 @@ function LoginDemo() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState("");
   const [msg, setMsg] = useState(param.get("msg"));
+
   const navigate =useNavigate();
 
   const doLogin = (e) => {
@@ -25,7 +26,7 @@ function LoginDemo() {
       //handle success
       localStorage.setItem("username", username);
       localStorage.setItem("token", token);
-      localStorage.setItem("id", response.data.id);
+      localStorage.setItem("id", response.data.id+1);
       localStorage.setItem("isLoggedIn", true);
       let role = response.data.role;
 

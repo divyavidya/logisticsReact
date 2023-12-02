@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import {  Card, Button, Container, Row, Col } from 'react-bootstrap';
+import {  Card, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 function SignUp() {
     const [name,setName] = useState('');
@@ -29,7 +29,7 @@ function SignUp() {
         axios.post('http://localhost:8181/customer/signup',customerObj)
         .then(response=>{
             setCustomer(response.data)
-            navigate('/auth/login?msg="signup success"')
+            navigate('/customer/dashboard')
         })
         .catch(function(error){
             setMsg('Issue in processing sign up')
@@ -39,7 +39,9 @@ function SignUp() {
     <div>
       <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '150vh', padding: '20px' }}>
         <Row>
-          <Col></Col>
+          <Col>
+          <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>
+          </Col>
         </Row>
 
         {/* Navbar with 2 tabs */}
@@ -56,7 +58,7 @@ function SignUp() {
             {/* Login Card */}
             <Card>
               <Card.Body>
-                <Card.Title>Login</Card.Title>
+                <Card.Title>SignUp</Card.Title>
                 <form onSubmit={(e)=>doSignUp(e)}>
                   <div style={{ marginBottom: "15px" }}>
                     <label
@@ -193,7 +195,7 @@ function SignUp() {
                   Already have an account?{" "}
                   <button
                     className="button_link"
-                    onClick={() => navigate("/auth/login")}
+                    onClick={() => navigate("/customer/dashboard")}
                   >
                     Login
                   </button>
