@@ -8,7 +8,7 @@ function TrackOrder() {
   const [msg, setMsg] = useState('');
 
   const doTrack = () => {
-    axios.get(`http://localhost:8181/customer/getOrder/${orderId}`)
+    axios.get(`http://localhost:8181/customer/getOrder/'`+orderId)
       .then(function (response) {
         setOrder(response.data);
         setMsg('');
@@ -102,7 +102,7 @@ function TrackOrder() {
                   <p><strong>Product Name</strong></p>
                   <p><strong>Product Decription</strong></p>
                   
-                  {/* Add more rows for other order details headings */}
+            
                 </div>
 
                 <div >
@@ -113,7 +113,7 @@ function TrackOrder() {
                   <p>:</p>
                   <p>:</p>
                   <p>:</p>
-                  {/* Add more colons for other order details */}
+                
                 </div>
 
                 <div >
@@ -125,7 +125,7 @@ function TrackOrder() {
                   <p>{order.product.name}</p>
                   <p>{order.product.description}</p>
                   
-                  {/* Add more paragraphs for other order details */}
+                  
                 </div>
               </Col>
               </Row>

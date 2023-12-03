@@ -32,7 +32,7 @@ function HistoryComponent() {
               <ListGroup.Item>Receiver: {order.receiver.name}</ListGroup.Item>
               <ListGroup.Item>Destination Address: {order.receiver.destinationAddress}</ListGroup.Item>
               <ListGroup.Item>Receiver Contact: {order.receiver.contact}</ListGroup.Item>
-              {/* Add more details as needed */}
+              
             </ListGroup>
           </Card.Body>
           <Card.Footer>

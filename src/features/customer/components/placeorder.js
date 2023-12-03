@@ -67,7 +67,7 @@ return(
                 >
                   Enter Source:
                 </label>
-                <input
+                {/* <input
                   type="text"
                   style={{
                     width: "100%",
@@ -76,7 +76,23 @@ return(
                     border: "1px solid #ccc",
                   }}
                   placeholder="Enter your source"
-                  onChange={(e) => setSource(e.target.value)}/>
+                  onChange={(e) => setSource(e.target.value)}/> */}
+                  <select aria-label="Select" style={{
+                    width: "100%",
+                    padding: "8px",
+                    borderRadius: "5px",
+                    border: "1px solid #ccc",
+                  }}
+                  onChange={(e) => setSource(e.target.value)} defaultValue="">
+                    <option value="" disabled hidden>
+                        select your source
+                    </option>
+          <option value="chennai">chennai</option>
+          <option value="mumbai">mumbai</option>
+          <option value="pune">pune</option>
+          <option value="delhi">delhi</option>
+          {/* Add more options as needed */}
+        </select>
               </div>
               <div style={{ marginBottom: "15px" }}>
                 <label
@@ -88,7 +104,7 @@ return(
                 >
                   Enter Destination:
                 </label>
-                <input
+                {/* <input
                   type="text"
                   style={{
                     width: "100%",
@@ -97,7 +113,23 @@ return(
                     border: "1px solid #ccc",
                   }}
                   placeholder="Enter your destination"
-                  onChange={(e) => setDestination(e.target.value)}/>
+                  onChange={(e) => setDestination(e.target.value)}/> */}
+                  <select aria-label="Select" style={{
+                    width: "100%",
+                    padding: "8px",
+                    borderRadius: "5px",
+                    border: "1px solid #ccc",
+                  }}
+                  onChange={(e) => setDestination(e.target.value)} defaultValue="">
+                    <option value="" disabled hidden>
+                           select your destination
+                      </option>
+          <option value="chennai">chennai</option>
+          <option value="mumbai">mumbai</option>
+          <option value="pune">pune</option>
+          <option value="delhi">delhi</option>
+          {/* Add more options as needed */}
+        </select>
               </div>
               <div style={{ marginBottom: "15px" }}>
                 <label
