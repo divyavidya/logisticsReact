@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import {  Card, Button, Container, Row, Col } from 'react-bootstrap';
+import {  Card, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
 function LoginDemo() {
@@ -76,6 +76,7 @@ function LoginDemo() {
              <Card >
              <Card.Body>
                <Card.Title>Login</Card.Title>
+               {msg && <p style={{ color: 'red', marginTop: '10px' }}>{msg}</p>}
                <form onSubmit={(e)=>doLogin(e)}>
                  <div style={{ marginBottom: '15px' }}>
                    <label style={{ display: 'block', marginBottom: '5px', textAlign: 'left'}}>Username:</label>
@@ -89,11 +90,11 @@ function LoginDemo() {
                    onChange={(e) => setPassword(e.target.value)}/>
                  </div>
  
-                 <input type="submit" value={"Login"}></input>
+                 <input type="submit" style={{backgroundColor:'green', color:'white', border:'none', borderRadius:'7px', padding:'8px 10px'}} value={"Login"}></input>
                </form>
  
                <p style={{ marginTop: '10px' }}>Don't have an account? <button
-                className="button_link"
+                className="btn btn-primary"
                 onClick={() => navigate("/auth/signup")}
               >
                 Sign up

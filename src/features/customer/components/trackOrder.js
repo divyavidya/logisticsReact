@@ -52,17 +52,22 @@ function TrackOrder() {
         <Col></Col>
        {order.id && (
             <Card style={{  marginTop: '20px',
-                            width: "18rem",
-                            height: "12rem",}}>
+                            width: "50rem",
+                            height: "26rem",}}>
               <Card.Body>
                 <h3>Order Details</h3>
                 
-                    
-                <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                    <Row>
+                <Col style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  
                 <div >
-                  <p><strong>Order ID:</strong></p>
-                  <p><strong>Cost (Rs.):</strong></p>
-                  <p><strong>Receiver Name:</strong></p>
+                  <p><strong>Order ID</strong></p>
+                  <p><strong>Total Cost</strong></p>
+                  <p><strong>Pickup Address</strong></p>
+                  <p><strong>Pickup Date</strong></p>
+                  <p><strong>Status</strong></p><hr/>
+                  <p><strong>Carrier Name</strong></p>
+                  <p><strong>Carrier Contact</strong></p>
                   {/* Add more rows for other order details headings */}
                 </div>
 
@@ -70,18 +75,66 @@ function TrackOrder() {
                   <p>:</p>
                   <p>:</p>
                   <p>:</p>
+                  <p>:</p>
+                  <p>:</p><hr/>
+                  <p>:</p>
+                  <p>:</p>
                   {/* Add more colons for other order details */}
                 </div>
 
                 <div >
                   <p>{order.id}</p>
-                  <p>{order.cost}</p>
-                  <p>{order.receiver.name}</p>
+                  <p>(Rs. ){order.cost}</p>
+                  <p>{order.pickUpAddress}</p>
+                  <p>{order.pickUpDate}</p>
+                  <p style={{color:'red'}}>{order.status}</p><hr/>
+                  <p>{order.carrier.name}</p>
+                  <p>{order.carrier.contact}</p>
                   {/* Add more paragraphs for other order details */}
                 </div>
-              </div>
+              </Col><Col style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div >
+                <p></p>
+                  <p><strong>Receiver Name</strong></p>
+                  <p><strong>Destination Address</strong></p>
+                  <p><strong>Contact</strong></p><hr/>
+                  <p><strong>Product Type</strong></p>
+                  <p><strong>Product Name</strong></p>
+                  <p><strong>Product Decription</strong></p>
                   
+                  {/* Add more rows for other order details headings */}
+                </div>
+
+                <div >
+                <p></p>
+                  <p>:</p>
+                  <p>:</p>
+                  <p>:</p><hr/>
+                  <p>:</p>
+                  <p>:</p>
+                  <p>:</p>
+                  {/* Add more colons for other order details */}
+                </div>
+
+                <div >
+                  <p></p>
+                  <p>{order.receiver.name}</p>
+                  <p>{order.receiver.destinationAddress}</p>
+                  <p>{order.receiver.contact}</p><hr/>
+                  <p>{order.product.type}</p>
+                  <p>{order.product.name}</p>
+                  <p>{order.product.description}</p>
+                  
+                  {/* Add more paragraphs for other order details */}
+                </div>
+              </Col>
+              </Row>
               </Card.Body>
+              <Card.Footer>
+            <small className="text-muted">
+              Route: {order.route.source} to {order.route.destination} | Vehicle: {order.route.vehicle}
+            </small>
+          </Card.Footer>
             </Card>
           )}
           <Col></Col>

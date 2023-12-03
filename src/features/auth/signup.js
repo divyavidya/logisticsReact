@@ -29,7 +29,7 @@ function SignUp() {
         axios.post('http://localhost:8181/customer/signup',customerObj)
         .then(response=>{
             setCustomer(response.data)
-            navigate('/customer/dashboard')
+            navigate('/customer/dashboard?msg=signup success')
         })
         .catch(function(error){
             setMsg('Issue in processing sign up')
@@ -134,7 +134,7 @@ function SignUp() {
                       Enter Contact Number:
                     </label>
                     <input
-                      type="text"
+                      type="number"
                       style={{
                         width: "100%",
                         padding: "8px",
@@ -188,13 +188,13 @@ function SignUp() {
                       onChange={(e) => setPassword(e.target.value)}/>
                   </div>
 
-                  <input type="submit" value={"Sign Up"}></input>
+                  <input type="submit"style={{backgroundColor:'green', color:'white', border:'none', borderRadius:'7px', padding:'8px 10px'}} value={"Sign Up"}></input>
                 </form>
 
                 <p style={{ marginTop: "10px" }}>
                   Already have an account?{" "}
                   <button
-                    className="button_link"
+                    className="btn btn-primary"
                     onClick={() => navigate("/customer/dashboard")}
                   >
                     Login

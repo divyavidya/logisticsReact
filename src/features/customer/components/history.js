@@ -15,21 +15,23 @@ function HistoryComponent() {
   }, []); // Empty dependency array to run the effect only once on moun
 
   return (
-    <div>
-      <h3>History</h3>
+    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'space-between' }}>
       {orders.map(order => (
-        <Card key={order.id} className="mb-3">
+        <Card key={order.id} className="mb-3" style={{  marginTop: '20px',
+        width: "27rem",
+        height: "25rem",}}>
           <Card.Header>
-            Order ID: {order.id} - Status: {order.status}
+            Order ID : <strong>{order.id}</strong>  - Status: <i style={{color:'red'}}>{order.status}</i>
           </Card.Header>
           <Card.Body>
             <ListGroup>
+            <ListGroup.Item>Product Name: {order.product.name}</ListGroup.Item>
               <ListGroup.Item>Pickup Address: {order.pickUpAddress}</ListGroup.Item>
               <ListGroup.Item>Pickup Date: {order.pickUpDate}</ListGroup.Item>
               <ListGroup.Item>Cost: {order.cost}</ListGroup.Item>
               <ListGroup.Item>Receiver: {order.receiver.name}</ListGroup.Item>
               <ListGroup.Item>Destination Address: {order.receiver.destinationAddress}</ListGroup.Item>
-              <ListGroup.Item>Contact: {order.receiver.contact}</ListGroup.Item>
+              <ListGroup.Item>Receiver Contact: {order.receiver.contact}</ListGroup.Item>
               {/* Add more details as needed */}
             </ListGroup>
           </Card.Body>

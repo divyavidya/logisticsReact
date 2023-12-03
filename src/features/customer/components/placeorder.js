@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState } from 'react';
-import {  Card, Button, Container, Row, Col } from 'react-bootstrap';
+import {  Card, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 function PlaceOrder(){
     const [source,setSource] = useState('');
@@ -40,7 +40,8 @@ function PlaceOrder(){
         axios.post('http://localhost:8181/customer/'+localStorage.getItem("id"),orderObject)
         .then(response=>{
             setOrder(response.data)
-            // navigate('/customer/dashboard?page=place_order?msg=placed order successfully')
+            localStorage.setItem("oid", response.data.id);
+            navigate('/customer/dashboard?page=payment')
         })
         .catch(function(error){
             setMsg('Issue in placing order')
@@ -50,20 +51,11 @@ return(
     <div>
     <Container>
     <Row>
-      <Col></Col>
-    </Row>
-
-    {/* Navbar with 2 tabs */}
-    <Row>
-      <Col></Col>
-    </Row>
-    <br />
-    <br />
-    <Row>
       <Col md={6}> 
       <Card>
           <Card.Body>
             <Card.Title>Place Order</Card.Title>
+            {msg && <p style={{ color: 'red', marginTop: '10px' }}>{msg}</p>}
             <form onSubmit={(e)=>palceOrder(e)}>
               <div style={{ marginBottom: "15px" }}>
                 <label
@@ -290,18 +282,8 @@ return(
                   onChange={(e) => setProductDescription(e.target.value)}/>
               </div>
 
-              <input type="submit" value={"Place Order"}></input>
+              <input type="submit" style={{backgroundColor:'green', color:'white', border:'none', borderRadius:'7px', padding:'8px 10px'}} value={"Place Order"}></input>
             </form>
-
-            {/* <p style={{ marginTop: "10px" }}>
-              Already have an account?{" "}
-              <button
-                className="button_link"
-                onClick={() => navigate("/auth/login")}
-              >
-                Login
-              </button>
-            </p> */}
           </Card.Body>
         </Card>
       </Col>

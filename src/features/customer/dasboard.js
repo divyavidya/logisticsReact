@@ -5,17 +5,27 @@ import { useSearchParams } from "react-router-dom";
 import TrackOrder from "./components/trackOrder";
 import HistoryComponent from "./components/history";
 import PlaceOrder from "./components/placeorder";
+import PaymentComponent from "./components/payment";
 
 function CustomerDashboard(){
   const [param] = useSearchParams();
-
   const process =()=>{
     if(!param.get('page')){
         return <div>
             <LoginDemo/>
         </div>
     }
-   
+    if(param.get('page')=== 'payment'){
+      if(localStorage.getItem('isLoggedIn')===null){
+       localStorage.setItem('url','/customer/dashboard?page=payment')
+       return<div>
+           <LoginDemo/>
+       </div>
+      }
+      return <div>
+           <PaymentComponent/>
+       </div>
+   }
     if(param.get('page')=== 'track_order'){
        if(localStorage.getItem('isLoggedIn')===null){
         localStorage.setItem('url','/customer/dashboard?page=track_order')
@@ -51,7 +61,7 @@ function CustomerDashboard(){
  }
 }
     return(
-        <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '100vh', padding: '20px' }}>
+        <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '160vh', padding: '20px' }}>
       <Row>
         <Col>
           <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>
