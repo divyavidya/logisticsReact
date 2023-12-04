@@ -34,8 +34,8 @@ function LoginDemo() {
         case "CUSTOMER":
           navigate("/customer/dashboard?page=track_order");
           break;
-        case "VENDOR":
-          navigate("/vendor/dashboard");
+        case "CARRIER":
+          navigate("/carrier/dashboard?page=orders");
           break;
         case "EXECUTIVE":
           navigate("/executive/dashboard?page=orders");

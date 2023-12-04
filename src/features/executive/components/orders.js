@@ -6,13 +6,18 @@ function OrdersComponent() {
   const [carrierData, setCarrierData] = useState({});
   const [selectedCarriers, setSelectedCarriers] = useState({});
 
+  const fetchOrders = async () => {
+    try {
+      const response = await axios.get('http://localhost:8181/executive/allOrders');
+      setOrders(response.data);
+    } catch (error) {
+      console.error("Error fetching orders:", error);
+    }
+  };
+
   useEffect(() => {
-    axios.get('http://localhost:8181/executive/allOrders')
-      .then(response => setOrders(response.data))
-      .catch(error => {
-        console.error("Error fetching orders:", error);
-      });
-  }, []);
+    fetchOrders();
+  }, [selectedCarriers]); // Fetch orders when selectedCarriers change
 
   useEffect(() => {
     const fetchCarrierData = async () => {
@@ -32,17 +37,18 @@ function OrdersComponent() {
 
     fetchCarrierData();
   }, [orders]);
-  
-  const handleAssignCarrier = (orderId, selectedCarrierId) => {
+
+  const handleAssignCarrier = async (orderId, selectedCarrierId) => {
     console.log("Assigning carrier for order ID:", orderId, "with selected carrier ID:", selectedCarrierId);
-    
-    axios.put(`http://localhost:8181/executive/putCarrier/${orderId}/${selectedCarrierId}`, {})
-      .then(response => {
-        console.log("Carrier assigned successfully");
-      })
-      .catch(error => {
-        console.error("Error assigning carrier:", error);
-      });
+
+    try {
+      await axios.put(`http://localhost:8181/executive/putCarrier/${orderId}/${selectedCarrierId}`, {});
+      console.log("Carrier assigned successfully");
+      // After successful assignment, refetch orders to update the table
+      fetchOrders();
+    } catch (error) {
+      console.error("Error assigning carrier:", error);
+    }
   };
   
   const handleDropdownChange = (orderId, e) => {
