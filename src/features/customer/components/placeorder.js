@@ -85,7 +85,7 @@ return(
                   }}
                   onChange={(e) => setSource(e.target.value)} defaultValue="">
                     <option value="" disabled hidden>
-                        select your source
+                        select your source city
                     </option>
           <option value="chennai">chennai</option>
           <option value="mumbai">mumbai</option>
@@ -122,7 +122,7 @@ return(
                   }}
                   onChange={(e) => setDestination(e.target.value)} defaultValue="">
                     <option value="" disabled hidden>
-                           select your destination
+                           select your destination city
                       </option>
           <option value="chennai">chennai</option>
           <option value="mumbai">mumbai</option>
@@ -141,7 +141,7 @@ return(
                 >
                   Enter PickUp Address:
                 </label>
-                <input
+                <input required
                   type="text"
                   style={{
                     width: "100%",
@@ -162,7 +162,7 @@ return(
                 >
                   Enter PickUp Date:
                 </label>
-                <input
+                <input required
                   type="date"
                   style={{
                     width: "100%",
@@ -183,7 +183,7 @@ return(
                 >
                   Enter Receiver Name:
                 </label>
-                <input
+                <input required
                   type="text"
                   style={{
                     width: "100%",
@@ -217,7 +217,7 @@ return(
                 >
                   Enter Receiver Address:
                 </label>
-                <input
+                <input required
                   type="text"
                   style={{
                     width: "100%",
@@ -238,7 +238,7 @@ return(
                 >
                   Enter Receiver Contact Number:
                 </label>
-                <input
+                <input required
                   type="number"
                   style={{
                     width: "100%",
@@ -259,7 +259,7 @@ return(
                 >
                   Enter Product Type:
                 </label>
-                <input
+                <input required
                   type="text"
                   style={{
                     width: "100%",
@@ -281,7 +281,7 @@ return(
                 >
                   Enter Product Name:
                 </label>
-                <input
+                <input required
                   type="text"
                   style={{
                     width: "100%",
@@ -302,7 +302,7 @@ return(
                 >
                   Enter Product Description:
                 </label>
-                <input
+                <input required
                   type="text"
                   style={{
                     width: "100%",

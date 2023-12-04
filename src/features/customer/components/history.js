@@ -18,7 +18,7 @@ function HistoryComponent() {
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'space-between' }}>
       {orders.map(order => (
         <Card key={order.id} className="mb-3" style={{  marginTop: '20px',
-        width: "27rem",
+        width: "29rem",
         height: "25rem",}}>
           <Card.Header>
             Order ID : <strong>{order.id}</strong>  - Status: <i style={{color:'red'}}>{order.status}</i>

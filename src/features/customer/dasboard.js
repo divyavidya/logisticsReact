@@ -1,7 +1,7 @@
 import { Col, Container, Row } from "react-bootstrap";
 import LoginDemo from "../auth/login";
 import NavBarCustomer from "./components/navbar";
-import { useSearchParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 import TrackOrder from "./components/trackOrder";
 import HistoryComponent from "./components/history";
 import PlaceOrder from "./components/placeorder";
@@ -61,7 +61,7 @@ function CustomerDashboard(){
  }
 }
     return(
-        <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '160vh', padding: '20px' }}>
+        <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '140vh', padding: '20px' }}>
       <Row>
         <Col>
           <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>

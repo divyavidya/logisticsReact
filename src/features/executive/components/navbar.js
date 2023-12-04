@@ -2,20 +2,18 @@ import React from "react";
 import { Nav, Navbar } from "react-bootstrap";
 import { useNavigate } from "react-router";
 
-function NavBarCustomer(){
-
-  const navigate = useNavigate();
-
+function NavBarExecutive(){
+    const navigate=useNavigate();
     return(
         <div className="mb-4">
-            <Navbar className='nav nav-pills' bg="transparent" variant="dark">
-            <Nav className="mr-auto">
-            <Nav.Link style={{color:'white'}} onClick={() => navigate("/customer/dashboard?page=track_order")}>Track Order </Nav.Link>
-            <Nav.Link style={{color:'white'}} onClick={() => navigate("/customer/dashboard?page=previous_orders")} > Previous Orders</Nav.Link>
-            <Nav.Link style={{color:'white'}} onClick={() => navigate("/customer/dashboard?page=place_order")} > Place Order</Nav.Link>
-              {/* Add more Nav.Link components for additional tabs */}
-            </Nav>
-            <Navbar.Collapse className="justify-content-end">
+        <Navbar className='nav nav-pills' bg="transparent" variant="dark">
+        <Nav className="mr-auto">
+        <Nav.Link style={{color:'white'}} onClick={() => navigate("/executive/dashboard?page=orders")}>All Orders </Nav.Link>
+        <Nav.Link style={{color:'white'}} onClick={() => navigate("/executive/dashboard?page=carriers")} > Carriers</Nav.Link>
+        <Nav.Link style={{color:'white'}} onClick={() => navigate("/executive/dashboard?page=routes")} > Routes</Nav.Link>
+          {/* Add more Nav.Link components for additional tabs */}
+        </Nav>
+        <Navbar.Collapse className="justify-content-end">
             {
             localStorage.getItem('isLoggedIn')?
             <React.Fragment>
@@ -34,9 +32,9 @@ function NavBarCustomer(){
          
          }
           </Navbar.Collapse>
-          </Navbar>
-        </div>
+      </Navbar>
+    </div>
     )
 }
 
-export default NavBarCustomer;
+export default NavBarExecutive;

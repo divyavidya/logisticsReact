@@ -38,7 +38,7 @@ function LoginDemo() {
           navigate("/vendor/dashboard");
           break;
         case "EXECUTIVE":
-          navigate("/executive/dashboard");
+          navigate("/executive/dashboard?page=orders");
           break;
         default:
       }
@@ -52,10 +52,12 @@ function LoginDemo() {
   return (
     <div>
            
-      <Container>
+      <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '140vh', padding: '20px' }}>
+ 
          <Row>
            <Col>
-             
+           <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>
+     
            </Col>
          </Row>
  
@@ -80,13 +82,13 @@ function LoginDemo() {
                <form onSubmit={(e)=>doLogin(e)}>
                  <div style={{ marginBottom: '15px' }}>
                    <label style={{ display: 'block', marginBottom: '5px', textAlign: 'left'}}>Username:</label>
-                   <input type="text" style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }} placeholder="Enter your username"
+                   <input required type="text" style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }} placeholder="Enter your username"
                    onChange={(e) => setUsername(e.target.value)} />
                  </div>
  
                  <div style={{ marginBottom: '15px' }}>
                    <label style={{ display: 'block', marginBottom: '5px', textAlign: 'left' }}>Password:</label>
-                   <input type="password" style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }} placeholder="Enter your password" 
+                   <input required type="password" style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }} placeholder="Enter your password" 
                    onChange={(e) => setPassword(e.target.value)}/>
                  </div>
  

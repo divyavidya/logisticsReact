@@ -70,7 +70,7 @@ function SignUp() {
                     >
                       Enter name:
                     </label>
-                    <input
+                    <input required
                       type="text"
                       style={{
                         width: "100%",
@@ -91,7 +91,7 @@ function SignUp() {
                     >
                       Enter email:
                     </label>
-                    <input
+                    <input required
                       type="email"
                       style={{
                         width: "100%",
@@ -112,7 +112,7 @@ function SignUp() {
                     >
                       Enter address:
                     </label>
-                    <input
+                    <input required
                       type="text"
                       style={{
                         width: "100%",
@@ -133,7 +133,7 @@ function SignUp() {
                     >
                       Enter Contact Number:
                     </label>
-                    <input
+                    <input required 
                       type="number"
                       style={{
                         width: "100%",
@@ -154,7 +154,7 @@ function SignUp() {
                     >
                       Username:
                     </label>
-                    <input
+                    <input required
                       type="text"
                       style={{
                         width: "100%",
@@ -176,7 +176,7 @@ function SignUp() {
                     >
                       Password:
                     </label>
-                    <input
+                    <input required
                       type="password"
                       style={{
                         width: "100%",

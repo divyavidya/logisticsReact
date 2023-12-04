@@ -8,7 +8,7 @@ function TrackOrder() {
   const [msg, setMsg] = useState('');
 
   const doTrack = () => {
-    axios.get(`http://localhost:8181/customer/getOrder/'`+orderId)
+    axios.get('http://localhost:8181/customer/getOrder/'+orderId)
       .then(function (response) {
         setOrder(response.data);
         setMsg('');
@@ -33,7 +33,7 @@ function TrackOrder() {
 
               <div style={{ marginBottom: '15px' }}>
                 <label style={{ display: 'block', marginBottom: '5px', textAlign: 'left' }}>Order ID:</label>
-                <input type="text" style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }} placeholder="Enter your Order Id"
+                <input required type="text" style={{ width: '100%', padding: '8px', borderRadius: '5px', border: '1px solid #ccc' }} placeholder="Enter your Order Id"
                   onChange={(e) => setOrderId(e.target.value)} />
               </div>
               <button className="btn btn-primary" onClick={() => doTrack()}>
