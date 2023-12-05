@@ -52,7 +52,7 @@ function TrackOrder() {
         <Col></Col>
        {order.id && (
             <Card style={{  marginTop: '20px',
-                            width: "50rem",
+                            width: "65rem",
                             height: "26rem",}}>
               <Card.Body>
                 <h3>Order Details</h3>

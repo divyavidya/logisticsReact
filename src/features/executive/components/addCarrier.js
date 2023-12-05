@@ -1,77 +1,66 @@
 import axios from 'axios';
-import { useState } from 'react';
-import {  Card, Container, Row, Col } from 'react-bootstrap';
-import { useNavigate } from 'react-router';
-function SignUp() {
+import { useState ,useEffect} from 'react';
+import {  Card,  Row, Col } from 'react-bootstrap';
+
+
+function AddCarrier(){
     const [name,setName] = useState('');
     const [address,setAddress] = useState(''); 
     const [email,setEmail] = useState(''); 
-    const [contact,setContact] = useState('');    
+    const [contact,setContact] = useState('');  
+    const [city,setCity] = useState('');   
     const [username,setUsername] = useState('');
     const [password,setPassword] = useState('');
-    const[customer,setCustomer]=useState({});
+    const[carrier,setCarrier]=useState({});
+    const [cities, setCities] = useState([]);
     const [msg,setMsg] = useState('');
-    const [passwordError, setPasswordError] = useState('');
-    const navigate =useNavigate();
 
-    const validatePassword = (value) => {
-      const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
-      return passwordRegex.test(value);
-    };
+    useEffect(() => {
+        axios.get('http://localhost:8181/executive/getAllCities')
+          .then(response => {
+            setCities(response.data);
+          })
+          .catch(error => {
+            console.error("Error fetching cities:", error);
+          });
+      }, []);
 
     const doSignUp=(e)=>{
         e.preventDefault();
-        if (!validatePassword(password)) {
-          setPasswordError(
-            'Password must be at least 6 characters and include one capital letter, one number, and one symbol.'
-          );
-          return;
-        }
-        let customerObj={
+        let carrierObj={
             "name":name,
             "address":address,
             "email":email,
             "contact":contact,
+            "city":city,
             "user":{
                "username":username,
                "password":password
             }
         }
-        console.log(customerObj)
-        //console.log(JSON.stringify(customerObj))
-        axios.post('http://localhost:8181/customer/signup',customerObj)
+        console.log(carrierObj)
+        axios.post('http://localhost:8181/executive/carrierOnboard',carrierObj)
         .then(response=>{
-            setCustomer(response.data)
-            navigate('/auth/login?msg=signup success')
+            setCarrier(response.data)
+            setMsg('Carrier added successfully')
         })
         .catch(function(error){
             setMsg('Issue in processing sign up')
         })
     }
-  return (
-    <div>
-      <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '150vh', padding: '20px' }}>
-        <Row>
-          <Col>
-          <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>
-          </Col>
-        </Row>
-
-        {/* Navbar with 2 tabs */}
-        <Row>
-          <Col></Col>
-        </Row>
-        <br />
-        <br />
-        <Row>
+    return(
+        <div>
+            <Row>
           <Col> </Col>
-
-          {/* Right Content */}
           <Col>
-            {/* Login Card */}
             <Card>
               <Card.Body>
-                <Card.Title>SignUp</Card.Title>
+                <Card.Title>Onboard Carrier</Card.Title>
+                {msg && (
+        <div style={{ textAlign: 'center', color: msg.includes('success') ? 'green' : 'red' }}>
+          {msg}
+        </div>
+      )}
                 <form onSubmit={(e)=>doSignUp(e)}>
                   <div style={{ marginBottom: "15px" }}>
                     <label
@@ -91,7 +80,7 @@ function SignUp() {
                         borderRadius: "5px",
                         border: "1px solid #ccc",
                       }}
-                      placeholder="Enter your name"
+                      placeholder="Enter carrier's name"
                       onChange={(e) => setName(e.target.value)}/>
                   </div>
                   <div style={{ marginBottom: "15px" }}>
@@ -112,7 +101,7 @@ function SignUp() {
                         borderRadius: "5px",
                         border: "1px solid #ccc",
                       }}
-                      placeholder="Enter your email"
+                      placeholder="Enter carrier's email"
                       onChange={(e) => setEmail(e.target.value)}/>
                   </div>
                   <div style={{ marginBottom: "15px" }}>
@@ -133,8 +122,35 @@ function SignUp() {
                         borderRadius: "5px",
                         border: "1px solid #ccc",
                       }}
-                      placeholder="Enter your address"
+                      placeholder="Enter carrier's address"
                       onChange={(e) => setAddress(e.target.value)}/>
+                  </div>
+                  <div style={{ marginBottom: "15px" }}>
+                  <label
+                      style={{
+                        display: "block",
+                        marginBottom: "5px",
+                        textAlign: "left",
+                      }}
+                    >
+                      City
+                    </label>
+                  <select aria-label="Select residing city" style={{
+                    width: "100%",
+                    padding: "8px",
+                    borderRadius: "5px",
+                    border: "1px solid #ccc",
+                  }}
+                  onChange={(e) => setCity(e.target.value)} defaultValue="">
+                    <option value="" disabled hidden>
+                        select the city
+                    </option>
+                    {cities.map((cityOption, index) => (
+                      <option key={index} value={cityOption}>
+                        {cityOption}
+                      </option>
+                    ))}
+        </select>
                   </div>
                   <div style={{ marginBottom: "15px" }}>
                     <label
@@ -154,7 +170,7 @@ function SignUp() {
                         borderRadius: "5px",
                         border: "1px solid #ccc",
                       }}
-                      placeholder="Enter your contact number"
+                      placeholder="Enter carrier's contact number"
                       onChange={(e) => setContact(e.target.value)}/>
                   </div>
                   <div style={{ marginBottom: "15px" }}>
@@ -175,7 +191,7 @@ function SignUp() {
                         borderRadius: "5px",
                         border: "1px solid #ccc",
                       }}
-                      placeholder="Enter your username"
+                      placeholder="Set carrier's username"
                       onChange={(e) => setUsername(e.target.value)}/>
                   </div>
 
@@ -197,35 +213,19 @@ function SignUp() {
                         borderRadius: "5px",
                         border: "1px solid #ccc",
                       }}
-                      placeholder="Enter your password"
-                      onChange={(e) => {
-                        setPassword(e.target.value);
-                        setPasswordError('');
-                      }}
-                    />
-                    {passwordError && (
-                      <p style={{ color: 'red', marginTop: '5px' }}>{passwordError}</p>
-                    )}
+                      placeholder="Set carrier's password"
+                      onChange={(e) => setPassword(e.target.value)}/>
                   </div>
 
                   <input type="submit"style={{backgroundColor:'green', color:'white', border:'none', borderRadius:'7px', padding:'8px 10px'}} value={"Sign Up"}></input>
                 </form>
-
-                <p style={{ marginTop: "10px" }}>
-                  Already have an account?{" "}
-                  <button
-                    className="btn btn-primary"
-                    onClick={() => navigate("/auth/login")}
-                  >
-                    Login
-                  </button>
-                </p>
               </Card.Body>
             </Card>
           </Col>
+          <Col> </Col>
         </Row>
-      </Container>
-    </div>
-  );
+        </div>
+    )
 }
-export default SignUp;
+
+export default AddCarrier;

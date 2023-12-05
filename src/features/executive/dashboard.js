@@ -1,14 +1,15 @@
 import { Col, Container, Row } from "react-bootstrap";
 import NavBarExecutive from "./components/navbar";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 import OrdersComponent from "./components/orders";
 import CarriersComponent from "./components/carriers";
 import RoutesComponent from "./components/routes";
 import LoginDemo from "../auth/login";
+import AddCarrier from "./components/addCarrier";
+import AddRoute from "./components/addRoute";
 
 function ExecutiveDashboard(){
     const [param] = useSearchParams();
-    const navigate=useNavigate();
     const process =()=>{
         if(!param.get('page')){
               return <div>
@@ -26,6 +27,29 @@ function ExecutiveDashboard(){
                  <OrdersComponent/>
              </div>
          }
+         if(param.get('page')=== 'addCarrier'){
+          if(localStorage.getItem('isLoggedIn')===null){
+           localStorage.setItem('url','/executive/dashboard?page=addCarrier')
+           return<div>
+               <LoginDemo/>
+           </div>
+          }
+          return <div>
+               <AddCarrier/>
+           </div>
+       }
+       if(param.get('page')=== 'addRoute'){
+        if(localStorage.getItem('isLoggedIn')===null){
+         localStorage.setItem('url','/executive/dashboard?page=addRoute')
+         return<div>
+             <LoginDemo/>
+         </div>
+        }
+        return <div>
+             <AddRoute/>
+         </div>
+     }
+
          if(param.get('page')=== 'carriers'){
             if(localStorage.getItem('isLoggedIn')===null){
              localStorage.setItem('url','/executive/dashboard?page=carriers')
@@ -52,7 +76,7 @@ function ExecutiveDashboard(){
 
 
     return(
-       <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '140vh', padding: '20px' }}>
+       <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '160vh', backgroundRepeat: 'repeat',padding: '20px' }}>
         <Row>
         <Col>
           <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>

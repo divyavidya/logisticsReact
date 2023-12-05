@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Table } from 'react-bootstrap'; // Assuming you are using Bootstrap
+import { Button, Table } from 'react-bootstrap'; // Assuming you are using Bootstrap
+import { useNavigate } from 'react-router';
 
 function RoutesComponent() {
   const [routes, setRoutes] = useState([]);
+  const navigate=useNavigate();
 
   useEffect(() => {
     axios.get('http://localhost:8181/executive/getallRoutes')
@@ -12,10 +14,20 @@ function RoutesComponent() {
         // Handle error here
         console.error("Error fetching orders:", error);
       });
-  }, []); // Empty dependency array to run the effect only once on mount
+  }, []); 
+
+  const handleAddCarrierClick = () => {
+    navigate('/executive/dashboard?page=addRoute');
+  };
 
   return (
     <div>
+      <Button
+        variant="primary"
+        style={{ float: 'right', margin: '10px' }}
+        onClick={handleAddCarrierClick}>
+        Add Route
+      </Button>
       <Table striped bordered hover>
         <thead>
         <tr>
