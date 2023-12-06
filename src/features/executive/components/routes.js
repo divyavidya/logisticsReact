@@ -19,6 +19,9 @@ function RoutesComponent() {
   const handleAddCarrierClick = () => {
     navigate('/executive/dashboard?page=addRoute');
   };
+  const handleShowAllLocations = () => {
+    navigate('/executive/dashboard?page=allLocations');
+  };
 
   return (
     <div>
@@ -27,6 +30,12 @@ function RoutesComponent() {
         style={{ float: 'right', margin: '10px' }}
         onClick={handleAddCarrierClick}>
         Add Route
+      </Button>
+      <Button
+        variant="primary"
+        style={{ float: 'right', margin: '10px' }}
+        onClick={handleShowAllLocations}>
+        All Locations
       </Button>
       <Table striped bordered hover>
         <thead>

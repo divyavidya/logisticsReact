@@ -7,6 +7,7 @@ import RoutesComponent from "./components/routes";
 import LoginDemo from "../auth/login";
 import AddCarrier from "./components/addCarrier";
 import AddRoute from "./components/addRoute";
+import AllLocations from "./components/allLocations";
 
 function ExecutiveDashboard(){
     const [param] = useSearchParams();
@@ -70,6 +71,17 @@ function ExecutiveDashboard(){
             }
             return <div>
                  <RoutesComponent/>
+             </div>
+         }
+         if(param.get('page')=== 'allLocations'){
+            if(localStorage.getItem('isLoggedIn')===null){
+             localStorage.setItem('url','/executive/dashboard?page=allLocations')
+             return<div>
+                 <LoginDemo/>
+             </div>
+            }
+            return <div>
+                 <AllLocations/>
              </div>
          }
     }

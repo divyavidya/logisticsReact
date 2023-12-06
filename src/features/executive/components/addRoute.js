@@ -25,7 +25,7 @@ function AddRoute() {
   
     useEffect(() => {
       if (source) {
-        axios.get(`http://localhost:8181/carrier/getlocations/${source}`)
+        axios.get(`http://localhost:8181/carrier/getLocations/${source}`)
           .then(response => {
             setLocations(response.data);
           })
