@@ -32,7 +32,7 @@ function PlaceOrder(){
 
     useEffect(() => {
       if (source) {
-        axios.get(`http://localhost:8181/carrier/getlocations/${source}`)
+        axios.get(`http://localhost:8181/carrier/getLocations/${source}`)
           .then(response => {
             setLocations(response.data);
           })
@@ -44,7 +44,7 @@ function PlaceOrder(){
 
     useEffect(() => {
       if (destination) {
-        axios.get(`http://localhost:8181/getlocations/${destination}`)
+        axios.get(`http://localhost:8181/getLocations/${destination}`)
           .then(response => {
             setReceiverAddresses(response.data);
           })
