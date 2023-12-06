@@ -19,7 +19,7 @@ function HistoryComponent() {
       {orders.map(order => (
         <Card key={order.id} className="mb-3" style={{  marginTop: '20px',
         width: "29rem",
-        height: "25rem",}}>
+        height: "28rem",}}>
           <Card.Header>
             Order ID : <strong>{order.id}</strong>  - Status: <i style={{color:'red'}}>{order.status}</i>
           </Card.Header>

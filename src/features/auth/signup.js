@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import {  Card, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 function SignUp() {
@@ -12,7 +12,24 @@ function SignUp() {
     const[customer,setCustomer]=useState({});
     const [msg,setMsg] = useState('');
     const [passwordError, setPasswordError] = useState('');
+    const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);
     const navigate =useNavigate();
+
+    useEffect(() => {
+      const checkUsernameAvailability = async () => {
+        try {
+          const response = await axios.get(`http://localhost:8181/checkUsername/${username}`);
+          setIsUsernameAvailable(response.data);
+        } catch (error) {
+          console.error('Error checking username availability:', error);
+        }
+      };
+  
+      // Check username availability only if the username is not empty
+      if (username) {
+        checkUsernameAvailability();
+      }
+    }, [username]);
 
     const validatePassword = (value) => {
       const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
@@ -177,6 +194,9 @@ function SignUp() {
                       }}
                       placeholder="Enter your username"
                       onChange={(e) => setUsername(e.target.value)}/>
+                       {!isUsernameAvailable && (
+          <p style={{ color: 'red', marginTop: '5px' }}>Username is not available.</p>
+        )}
                   </div>
 
                   <div style={{ marginBottom: "15px" }}>

@@ -25,7 +25,7 @@ function AddRoute() {
   
     useEffect(() => {
       if (source) {
-        axios.get(`http://localhost:8181/carrier/getLocations/${source}`)
+        axios.get(`http://localhost:8181/carrier/getlocations/${source}`)
           .then(response => {
             setLocations(response.data);
           })
@@ -187,7 +187,7 @@ function AddRoute() {
             textAlign: "left",
           }}
         >
-          Enter location:
+          Enter or Select location:
         </label>
         <select
           aria-label="Select source location"
@@ -246,7 +246,7 @@ function AddRoute() {
                   onChange={(e) => setVehicle(e.target.value)}/>
               </div>
 
-              <input type="submit"style={{backgroundColor:'green', color:'white', border:'none', borderRadius:'7px', padding:'8px 10px'}} value={"Sign Up"}></input>
+              <input type="submit"style={{backgroundColor:'green', color:'white', border:'none', borderRadius:'7px', padding:'8px 10px'}} value={"Add Route"}></input>
             </form>
           </Card.Body>
         </Card>

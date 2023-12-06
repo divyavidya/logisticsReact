@@ -14,6 +14,8 @@ function AddCarrier(){
     const[carrier,setCarrier]=useState({});
     const [cities, setCities] = useState([]);
     const [msg,setMsg] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [isUsernameAvailable, setIsUsernameAvailable] = useState(true);
 
     useEffect(() => {
         axios.get('http://localhost:8181/executive/getAllCities')
@@ -24,9 +26,35 @@ function AddCarrier(){
             console.error("Error fetching cities:", error);
           });
       }, []);
+      const validatePassword = (value) => {
+        const passwordRegex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+        return passwordRegex.test(value);
+      };
+
+      useEffect(() => {
+        const checkUsernameAvailability = async () => {
+          try {
+            const response = await axios.get(`http://localhost:8181/checkUsername/${username}`);
+            setIsUsernameAvailable(response.data);
+          } catch (error) {
+            console.error('Error checking username availability:', error);
+          }
+        };
+    
+        // Check username availability only if the username is not empty
+        if (username) {
+          checkUsernameAvailability();
+        }
+      }, [username]);
 
     const doSignUp=(e)=>{
         e.preventDefault();
+        if (!validatePassword(password)) {
+          setPasswordError(
+            'Password must be at least 6 characters and include one capital letter, one number, and one symbol.'
+          );
+          return;
+        }
         let carrierObj={
             "name":name,
             "address":address,
@@ -173,27 +201,32 @@ function AddCarrier(){
                       placeholder="Enter carrier's contact number"
                       onChange={(e) => setContact(e.target.value)}/>
                   </div>
-                  <div style={{ marginBottom: "15px" }}>
-                    <label
-                      style={{
-                        display: "block",
-                        marginBottom: "5px",
-                        textAlign: "left",
-                      }}
-                    >
-                      Username:
-                    </label>
-                    <input required
-                      type="text"
-                      style={{
-                        width: "100%",
-                        padding: "8px",
-                        borderRadius: "5px",
-                        border: "1px solid #ccc",
-                      }}
-                      placeholder="Set carrier's username"
-                      onChange={(e) => setUsername(e.target.value)}/>
-                  </div>
+                  <div style={{ marginBottom: '15px' }}>
+        <label
+          style={{
+            display: 'block',
+            marginBottom: '5px',
+            textAlign: 'left',
+          }}
+        >
+          Username:
+        </label>
+        <input
+          required
+          type="text"
+          style={{
+            width: '100%',
+            padding: '8px',
+            borderRadius: '5px',
+            border: '1px solid #ccc',
+          }}
+          placeholder="Set carrier's username"
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        {!isUsernameAvailable && (
+          <p style={{ color: 'red', marginTop: '5px' }}>Username is not available.</p>
+        )}
+      </div>
 
                   <div style={{ marginBottom: "15px" }}>
                     <label
@@ -214,10 +247,16 @@ function AddCarrier(){
                         border: "1px solid #ccc",
                       }}
                       placeholder="Set carrier's password"
-                      onChange={(e) => setPassword(e.target.value)}/>
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        setPasswordError('');
+                      }}/>
+                       {passwordError && (
+                      <p style={{ color: 'red', marginTop: '5px' }}>{passwordError}</p>
+                    )}
                   </div>
 
-                  <input type="submit"style={{backgroundColor:'green', color:'white', border:'none', borderRadius:'7px', padding:'8px 10px'}} value={"Sign Up"}></input>
+                  <input type="submit"style={{backgroundColor:'green', color:'white', border:'none', borderRadius:'7px', padding:'8px 10px'}} value={"Add Carrier"}></input>
                 </form>
               </Card.Body>
             </Card>
