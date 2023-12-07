@@ -5,6 +5,7 @@ function OrdersComponent() {
   const [orders, setOrders] = useState([]);
   const [carrierData, setCarrierData] = useState({});
   const [selectedCarriers, setSelectedCarriers] = useState({});
+  const [statusFilter, setStatusFilter] = useState('');
 
   const fetchOrders = async () => {
     try {
@@ -60,65 +61,125 @@ function OrdersComponent() {
       [orderId]: newSelectedCarrierId,
     }));
   };
-  
+  const handleStatusFilterChange = (status) => {
+    setStatusFilter(status);
+  };
 
   return (
     <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px', justifyContent: 'space-between' }}>
-      <table className="table">
+      <div>
+        <label>
+          <input
+            type="radio"
+            name="statusFilter"
+            value=""
+            checked={statusFilter === ''}
+            onChange={() => handleStatusFilterChange('')}
+          />
+          All
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="statusFilter"
+            value="PENDING"
+            checked={statusFilter === 'PENDING'}
+            onChange={() => handleStatusFilterChange('PENDING')}
+          />
+          Pending
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="statusFilter"
+            value="IN_TRANSIT"
+            checked={statusFilter === 'IN_TRANSIT'}
+            onChange={() => handleStatusFilterChange('IN_TRANSIT')}
+          />
+          In Transit
+        </label>
+        <label>
+          <input
+            type="radio"
+            name="statusFilter"
+            value="DELIVERED"
+            checked={statusFilter === 'DELIVERED'}
+            onChange={() => handleStatusFilterChange('DELIVERED')}
+          />
+          Delivered
+        </label>
+      </div>
+      <table className="table table-bordered" >
         <thead>
           <tr>
-            <th>Order ID</th>
-            <th>Status</th>
-      <th>Product Name</th>
-      <th>Pickup Address</th>
-      <th>Pickup Date</th>
-      <th>Cost</th>
-      <th>Destination Address</th>
-      <th>Receiver Contact</th>
-      <th>Carrier ID</th>
-      <th>Carrier Name</th>
-      <th>Carrier Contact</th>
-      <th>Route</th>
-      <th>Vehicle</th>
-            <th>Assign Carrier</th>
+            <th style={{ width: '5%' }}>Order ID</th>
+            <th style={{ width: '8%' }}>Product</th>
+            <th style={{ width: '11%' }}>Pick - Up Address</th>
+            <th style={{ width: '8%' }}>Pickup Date</th>
+            <th style={{ width: '3%' }}>Cost</th>
+            <th style={{ width: '11%' }}>Destination Address</th>
+            <th style={{ width: '10%' }}>Receiver Contact</th>
+            <th style={{ width: '5%' }}>Carrier</th>
+            <th style={{ width: '10%' }}>Carrier Contact</th>
+            <th style={{ width: '6%' }}>Route</th>
+            <th style={{ width: '8%' }}>Vehicle</th>
+            <th style={{ width: '5%' }}>Status</th>
+            <th style={{ width: '10%' }}>Change Carrier</th>
           </tr>
         </thead>
         <tbody>
-          {orders.map((order, index) => (
-            <tr key={index}>
+          {orders.map((order, index) => {
+             const displayStatus = order.status === 'SHIPPED' ? 'IN_TRANSIT' : order.status;
+             
+
+            // Filter rows based on status
+            if (statusFilter && displayStatus !== statusFilter) {
+              return null;
+            }
+            return(
+              <tr key={index} >
               <td>{order.id}</td>
-              <td style={{ color: 'red' }}>{order.status}</td>
+           
         <td>{order.product.name}</td>
         <td>{order.pickUpAddress}</td>
         <td>{order.pickUpDate}</td>
         <td>{order.cost}</td>
         <td>{order.receiver.destinationAddress}</td>
         <td>{order.receiver.contact}</td>
-        <td>{order.carrier.id}</td>
         <td>{order.carrier.name}</td>
         <td>{order.carrier.contact}</td>
         <td>{order.route.source} to {order.route.destination}</td>
         <td>{order.route.vehicle}</td>
+        <td style={{ color: displayStatus === 'PENDING' ? 'red' : displayStatus === 'IN_TRANSIT' ? '#F7C310 ' : 'green' }}>
+  {displayStatus}
+            </td>
 
-              <td>
-                        <select
-            value={selectedCarriers[order.id]}
-            onChange={(e) => handleDropdownChange(order.id, e)}
-          >
-            <option value="">Select Carrier</option>
-            {carrierData[order.id]?.map((carrier, index) => (
-              <option key={index} value={carrier.id}>
-                {carrier.id}---{carrier.name}
-              </option>
-            ))}
-          </select>
-
-                <button onClick={() => handleAssignCarrier(order.id, selectedCarriers[order.id])}>
-  Assign
-</button>
+        <td>
+                {displayStatus === 'DELIVERED' ? (
+                  'Delivered'
+                ) : (
+                  <>
+                    <select
+                      value={selectedCarriers[order.id]}
+                      onChange={(e) => handleDropdownChange(order.id, e)}
+                      style={{ width: '100%' }}
+                    >
+                      <option value="">Select Carrier</option>
+                      {carrierData[order.id]?.map((carrier, index) => (
+                        <option key={index} value={carrier.id}>
+                          {carrier.id}---{carrier.name}
+                        </option>
+                      ))}
+                    </select>
+                    <button className="btn btn-primary btn-sm" onClick={() => handleAssignCarrier(order.id, selectedCarriers[order.id])} style={{ width: '60%', height:'40',marginTop: '5px'}}>
+                      Assign
+                    </button>
+                  </>
+                )}
               </td>
             </tr>
-          ))}
+            );
+          })}
         </tbody>
       </table>
     </div>
