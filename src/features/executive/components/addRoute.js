@@ -25,7 +25,7 @@ function AddRoute() {
   
     useEffect(() => {
       if (source) {
-        axios.get(`http://localhost:8181/carrier/getlocations/${source}`)
+        axios.get(`http://localhost:8181/carrier/getLocations/${source}`)
           .then(response => {
             setLocations(response.data);
           })
@@ -82,7 +82,7 @@ function AddRoute() {
       <Col>
         <Card>
           <Card.Body>
-            <Card.Title>Onboard Carrier</Card.Title>
+            <Card.Title>Add Route</Card.Title>
             {msg && (
     <div style={{ textAlign: 'center', color: msg.includes('success') ? 'green' : 'red' }}>
       {msg}
