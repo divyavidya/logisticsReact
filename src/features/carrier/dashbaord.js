@@ -6,6 +6,7 @@ import LoginDemo from "../auth/login";
 
 function CarrierDashbaord(){
     const [param] = useSearchParams();
+    const message="Orders";
     const process =()=>{
         if(!param.get('page')){
               return <div>
@@ -20,7 +21,7 @@ function CarrierDashbaord(){
              </div>
             }
             return <div>
-                 <CarrierOrders/>
+                 <CarrierOrders message={message}/>
              </div>
          }
         

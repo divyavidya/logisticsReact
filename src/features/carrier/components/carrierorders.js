@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Table } from 'react-bootstrap'; // Assuming you are using Bootstrap
 
-function CarrierOrders() {
+function CarrierOrders(props) {
   const [orders, setOrders] = useState([]);
   const [selectedStatus, setSelectedStatus] = useState('');
-
+  const {message}=props;
   useEffect(() => {
     fetchOrders();
   }, []); // Empty dependency array to run the effect only once on mount
@@ -53,6 +53,7 @@ function CarrierOrders() {
 
   return (
     <div>
+      <h3 style={{color:'white'}}>{message}</h3>
       <Table striped bordered hover>
       <thead>
           <tr>
@@ -88,7 +89,7 @@ function CarrierOrders() {
                   <option value="SHIPPED">SHIPPED</option>
                   <option value="DELIVERED">DELIVERED</option>
                 </select>
-                <button onClick={() => handleUpdateStatus(order.id)}>Update</button>
+                <button className="btn btn-primary btn-sm" style={{marginTop:"5px"}} onClick={() => handleUpdateStatus(order.id)}>Update</button>
               </td>
             </tr>
           ))}

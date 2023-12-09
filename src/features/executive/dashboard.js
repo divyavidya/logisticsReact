@@ -12,6 +12,7 @@ import Customers from "./components/customers";
 
 function ExecutiveDashboard(){
     const [param] = useSearchParams();
+    const message="All Routes";
     const process =()=>{
         if(!param.get('page')){
               return <div>
@@ -71,7 +72,7 @@ function ExecutiveDashboard(){
              </div>
             }
             return <div>
-                 <RoutesComponent/>
+                 <RoutesComponent message={message}/>
              </div>
          }
          if(param.get('page')=== 'allLocations'){

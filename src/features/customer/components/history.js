@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { Card, ListGroup } from 'react-bootstrap'; // Assuming you are using Bootstrap
+import { Card, ListGroup, Row } from 'react-bootstrap'; // Assuming you are using Bootstrap
 
 function HistoryComponent() {
   const [orders, setOrders] = useState([]);
-
   useEffect(() => {
     axios.get('http://localhost:8181/customer/getAllOrdersHistory/'+localStorage.getItem("id"))
       .then(response => setOrders(response.data))

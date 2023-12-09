@@ -3,11 +3,12 @@ import axios from 'axios';
 import { Alert, Button, Card, Form, Table } from 'react-bootstrap';
 import { useNavigate } from 'react-router';
 
-function RoutesComponent() {
+function RoutesComponent(props) {
   const [routes, setRoutes] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(7);
   const [showForm, setShowForm] = useState(false);
+  const {message}=props;
   const [formData, setFormData] = useState({
     id: null,
     source: '',
@@ -88,6 +89,7 @@ function RoutesComponent() {
 
   return (
     <div>
+      <h3 style={{color:'white'}}>{message}</h3>
       <Button
         variant="primary"
         style={{ float: 'right', margin: '10px' }}
