@@ -21,6 +21,7 @@ function NavBarCustomer(){
             <React.Fragment>
             <Navbar.Text >
             <span style={{color: "black"}}>Welcome  </span> <span style={{color: "black"}}> 
+            <i className="bi bi-person-circle" style={{color:'black'}}></i>&nbsp;
             {localStorage.getItem('username')} 
             </span>
           </Navbar.Text>

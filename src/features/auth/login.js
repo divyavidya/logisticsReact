@@ -56,7 +56,7 @@ function LoginDemo() {
  
          <Row>
            <Col>
-           <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>
+           <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES &nbsp; <i className="bi bi-truck"></i></h1>
      
            </Col>
          </Row>

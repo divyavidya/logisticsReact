@@ -28,7 +28,7 @@ function HistoryComponent() {
             <ListGroup.Item>Product Name: {order.product.name}</ListGroup.Item>
               <ListGroup.Item>Pickup Address: {order.pickUpAddress}</ListGroup.Item>
               <ListGroup.Item>Pickup Date: {order.pickUpDate}</ListGroup.Item>
-              <ListGroup.Item>Cost: {order.cost}</ListGroup.Item>
+              <ListGroup.Item>Cost: Rs. {order.cost}</ListGroup.Item>
               <ListGroup.Item>Receiver: {order.receiver.name}</ListGroup.Item>
               <ListGroup.Item>Destination Address: {order.receiver.destinationAddress}</ListGroup.Item>
               <ListGroup.Item>Receiver Contact: {order.receiver.contact}</ListGroup.Item>

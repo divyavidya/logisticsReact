@@ -97,58 +97,66 @@ return(
             {msg && <p style={{ color: 'red', marginTop: '10px' }}>{msg}</p>}
             <form onSubmit={(e)=>palceOrder(e)}>
               <div style={{ marginBottom: "15px" }}>
-                <label
-                  style={{
-                    display: "block",
-                    marginBottom: "5px",
-                    textAlign: "left",
-                  }}
-                >
-                  Source City:
-                </label>
-                  <select aria-label="Select" style={{
-                    width: "100%",
-                    padding: "8px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                  }}
-                  onChange={(e) => setSource(e.target.value)} defaultValue="" required>
-                    <option value="" disabled hidden>
-                        select your source city
-                    </option>
-                    {cities.map((cityOption, index) => (
-                        <option key={index} value={cityOption}>
-                          {cityOption}
-                        </option>
-                      ))}
-        </select>
+              <label
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              textAlign: "left",
+            }}
+          >
+            Source City:
+          </label>
+          <input
+            list="sourceCities"
+            type="text"
+            style={{
+              width: "100%",
+              padding: "8px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+            }}
+            onChange={(e) => setSource(e.target.value)}
+            placeholder="Select your source city"
+            required
+          />
+          <datalist id="sourceCities">
+            {cities.map((cityOption, index) => (
+              <option key={index} value={cityOption}>
+                {cityOption}
+              </option>
+            ))}
+          </datalist>
               </div>
               <div style={{ marginBottom: "15px" }}>
-                <label
-                  style={{
-                    display: "block",
-                    marginBottom: "5px",
-                    textAlign: "left",
-                  }}
-                >
-                  Destination City:
-                </label>
-                  <select aria-label="Select" style={{
-                    width: "100%",
-                    padding: "8px",
-                    borderRadius: "5px",
-                    border: "1px solid #ccc",
-                  }}
-                  onChange={(e) => setDestination(e.target.value)} defaultValue="" required>
-                    <option value="" disabled hidden>
-                           select your destination city
-                      </option>
-                      {cities.map((cityOption, index) => (
-                        <option key={index} value={cityOption}>
-                          {cityOption}
-                        </option>
-                      ))}
-        </select>
+                        <label
+            style={{
+              display: "block",
+              marginBottom: "5px",
+              textAlign: "left",
+            }}
+          >
+            Destination City:
+          </label>
+          <input
+            list="destinationCities"
+            type="text"
+            style={{
+              width: "100%",
+              padding: "8px",
+              borderRadius: "5px",
+              border: "1px solid #ccc",
+            }}
+            onChange={(e) => setDestination(e.target.value)}
+            placeholder="Select your destination city"
+            required
+          />
+          <datalist id="destinationCities">
+            {cities.map((cityOption, index) => (
+              <option key={index} value={cityOption}>
+                {cityOption}
+              </option>
+            ))}
+          </datalist>
               </div>
               <div style={{ marginBottom: "15px" }}>
                 <label

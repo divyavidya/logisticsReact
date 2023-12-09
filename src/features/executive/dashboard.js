@@ -8,6 +8,7 @@ import LoginDemo from "../auth/login";
 import AddCarrier from "./components/addCarrier";
 import AddRoute from "./components/addRoute";
 import AllLocations from "./components/allLocations";
+import Customers from "./components/customers";
 
 function ExecutiveDashboard(){
     const [param] = useSearchParams();
@@ -84,6 +85,17 @@ function ExecutiveDashboard(){
                  <AllLocations/>
              </div>
          }
+         if(param.get('page')=== 'customers'){
+            if(localStorage.getItem('isLoggedIn')===null){
+             localStorage.setItem('url','/executive/dashboard?page=customers')
+             return<div>
+                 <LoginDemo/>
+             </div>
+            }
+            return <div>
+                 <Customers/>
+             </div>
+         }
     }
 
 
@@ -91,7 +103,7 @@ function ExecutiveDashboard(){
        <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '160vh', backgroundRepeat: 'repeat',padding: '20px' }}>
         <Row>
         <Col>
-          <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>
+          <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES &nbsp; <i className="bi bi-truck"></i></h1>
         </Col>
       </Row>
       <Row>

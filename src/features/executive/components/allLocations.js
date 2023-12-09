@@ -14,12 +14,15 @@ function AllLocations(){
     return(
         <div>
       <Col md={{ span: 6, offset: 3 }}>
-            <Card bg="secondary" text="white">
+            <Card bg="secondary" text="white" style={{width:'70%'}}>
                 <Card.Header style={{ backgroundColor: 'gray', color: '#fff',fontSize:'140%'}}>All Designated Locations</Card.Header>
                 <Card.Body>
                     <ListGroup>
                         {list.map((location, index) => (
-                            <ListGroup.Item key={index}>{location}</ListGroup.Item>
+                              <ListGroup.Item key={index} style={{ display: 'flex', alignItems: 'center' }}>
+                              <span style={{ marginRight: '10px' }}>{index + 1}---</span>
+                              <span>{location}</span>
+                            </ListGroup.Item>
                         ))}
                     </ListGroup>
                 </Card.Body>

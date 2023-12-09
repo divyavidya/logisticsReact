@@ -64,7 +64,7 @@ function CustomerDashboard(){
         <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '160vh', padding: '20px' }}>
       <Row>
         <Col>
-          <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>
+          <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES &nbsp;<i className="bi bi-truck"></i></h1>
         </Col>
       </Row>
 

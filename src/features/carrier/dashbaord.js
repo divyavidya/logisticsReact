@@ -1,12 +1,11 @@
 import { Col, Container, Row } from "react-bootstrap";
 import CarrierNavbar from "./components/navbar";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import {  useSearchParams } from "react-router-dom";
 import CarrierOrders from "./components/carrierorders";
 import LoginDemo from "../auth/login";
 
 function CarrierDashbaord(){
     const [param] = useSearchParams();
-    const navigate=useNavigate();
     const process =()=>{
         if(!param.get('page')){
               return <div>
@@ -30,7 +29,7 @@ function CarrierDashbaord(){
  <Container fluid style={{ backgroundImage: 'url(/images/truck.jpg)', backgroundSize: 'cover', height: '140vh', padding: '20px' }}>
         <Row>
         <Col>
-          <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES</h1>
+          <h1 style={{ fontSize: '3rem', color: 'white', fontWeight: 'bold' }}>TRANSFORMATIVES &nbsp; <i className="bi bi-truck"></i></h1>
         </Col>
       </Row>
       <Row>
