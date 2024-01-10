@@ -171,7 +171,7 @@ function OrdersComponent() {
                         </option>
                       ))}
                     </select>
-                    <button className="btn btn-primary btn-sm" onClick={() => handleAssignCarrier(order.id, selectedCarriers[order.id])} style={{ width: '60%', height:'40',marginTop: '5px'}}>
+                    <button className="btn btn-primary btn-sm" onClick={() => handleAssignCarrier(order.id, selectedCarriers[order.id])} style={{ width: '80%', height:'40',marginTop: '5px'}}>
                       Assign
                     </button>
                   </>

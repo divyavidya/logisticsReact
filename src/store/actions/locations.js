@@ -13,4 +13,5 @@ export const getLocations=()=>(dispatch)=>{
         //     payload: response.data
         // }
     })
+    
 }

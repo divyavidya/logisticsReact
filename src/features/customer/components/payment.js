@@ -35,7 +35,6 @@ function PaymentComponent(){
             <p ><strong style={{fontSize:'110%'}}>Order ID</strong></p>
             <p ><strong style={{fontSize:'110%'}}>Pickup Date</strong> </p>
             <p ><strong style={{fontSize:'110%'}}>Cost</strong> </p>
-            <p ><strong style={{fontSize:'110%'}}>Expected Delivery in </strong> </p>
             <p ><strong style={{fontSize:'110%'}}>Pickup Point</strong> </p>
           </div>
           </Col>
@@ -44,7 +43,6 @@ function PaymentComponent(){
               <p>{order.id}</p>
               <p>{order.pickUpDate}</p>
               <p>Rs. {order.cost} (including taxes)</p>
-              <p>{order.route.noOfDays} days</p>
               <p>{order.pickUpAddress}</p>
               {/* Add more content as needed */}
             </div>
